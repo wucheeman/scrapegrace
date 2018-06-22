@@ -2,3 +2,4 @@ node_modules
 snippets/
 target/
 post_dev_tasks.txt
+commit_tasks.txt
