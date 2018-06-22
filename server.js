@@ -43,24 +43,33 @@ app.get("/articles", function(req, res) {
 // TODO: update for mongoose
 // Accessing this route triggers the server to scrap data and save it to MongoDB.
 app.get("/scraped", function(req, res) {
-  //console.log('Starting to scrape')
-  request("https://boingboing.net/", function(error, response, html) {
+  console.log('Starting to scrape')
+  request("http://www.heraldsun.com/news/local/community/chapel-hill-news/", function(error, response, html) {
     var $ = cheerio.load(html);
-    console.log('html loaded')
-    var results = [];
 
-    $("a.headline").each(function(i, element) {
-      //console.log($(element));
-      // var link = $(element).children().attr("href");
-      // var title = $(element).children().text();
-      // gets title and URL; need to get summary via summary URL
-      var link = $(element).attr("href");
-      var title = $(element).text();
+    $("div.teaser").each(function(i, element) {
+      var link = $(element).children('.title').children('a').attr('href');
+      var title = $(element).children('.title').children('a').text();
+      title = title.trim();
+      var summary = $(element).children('.summary').text();
+      if (summary === '') {
+        summary = 'No summary available';
+      } else {
+        // removes leading and trailing line breaks
+        summary = summary.replace(/^\s+|\s+$/g, '');
+      }
+      // console.log({link});
+      // console.log({title})
+      // console.log({summary});
+      // console.log();
       // TODO: improve this from school solution
-      db.articles.insert ({
-        "title": title,
-        "link": link
-      });
+      if (link !== undefined) {
+        db.articles.insert ({
+          "title": title,
+          "link": link,
+          "summary": summary
+        });
+      }
     });
 
     res.send("Site scraped");
