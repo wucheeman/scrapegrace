@@ -9,8 +9,8 @@ Static requirements
    () express-handlebars
    () mongoose
    () body-parser
-   () cheerio or axios
-   () request
+   () cheerio 
+   () request or axios
 [] Connects locally to Mongo DB; on Heroku, connects via mLab
 [] Deploy to Heroku
 
