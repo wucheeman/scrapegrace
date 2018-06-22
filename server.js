@@ -64,13 +64,21 @@ app.get("/scraped", function(req, res) {
       // console.log();
       // TODO: improve this from school solution
       if (link !== undefined) {
-        db.articles.insert ({
-          "title": title,
-          "link": link,
-          "summary": summary
-        });
+        // test to see if article has already been stored
+        // TODO: change to mongoose
+        db.articles.findOne({link: link}, function(err, doc) {
+          if (doc.length === 0) {
+            db.articles.insert ({
+              "title": title,
+              "link": link,
+              "summary": summary
+            });
+          } else {
+            console.log('article already in DB');
+          }
+        }) // end of query processing
       }
-    });
+    }); // end of .each
 
     res.send("Site scraped");
   });
