@@ -1,47 +1,63 @@
-// TODO: improve this whole file from school solution - look at error handling
-
-// Dependencies
 var express = require("express");
-// TODO: replace with mongoose
-var mongojs = require("mongojs");
-// Require request and cheerio. This makes the scraping possible
+var bodyParser = require("body-parser");
+var logger = require("morgan");
+var mongoose = require("mongoose");
+
 var request = require("request");
+// TODO: move from request to axios
+// var axios = require("axios");
 var cheerio = require("cheerio");
+
+var db = require("./models");
+
+// TODO: update to enable running on Heroku
+var PORT = 3000;
 
 // Initialize Express
 var app = express();
 
-// TODO: update for Mongoose?
-// Database configuration
-var databaseUrl = "scrapegracedb";
-var collections = ["articles"];
+// Configure middleware
+app.use(logger("dev"));
+app.use(bodyParser.urlencoded({ extended: true }));
 
-// TODO: replace with Mongoose
-// Hook mongojs configuration to the db variable
-var db = mongojs(databaseUrl, collections);
-db.on("error", function(error) {
-  console.log("Database Error:", error);
-});
+app.use(express.static("public"));
 
-// TODO: move into routes
-// Main route (simple Hello World Message)
-app.get("/", function(req, res) {
-  res.send("Hello world");
-});
+// TODO: update to correct DB
+mongoose.connect("mongodb://localhost/scrapegracedb");
 
-// TODO: update for mongoose
-// TODO: update for mongoose
-// This retrieves all of the data from articles as a json
-app.get("/articles", function(req, res) {
-  db.articles.find(function (err, docs) {
-    // docs is an array of all the documents in articles
-    res.json(docs);
-  })
-});
+// Routes
+// TODO: update for correct web site
+// TODO: add summary
+// Route for scraping the news website
+// app.get("/scrape", function(req, res) {
+  // axios.get("http://www.echojs.com/").then(function(response) {
+  //   var $ = cheerio.load(response.data);
 
-// TODO: move into routes
-// TODO: update for mongoose
-// Accessing this route triggers the server to scrap data and save it to MongoDB.
+  //   $("article h2").each(function(i, element) {
+  //     var result = {};
+
+  //     result.title = $(this)
+  //       .children("a")
+  //       .text();
+  //     result.link = $(this)
+  //       .children("a")
+  //       .attr("href");
+
+  //     db.Article.create(result)
+  //       .then(function(dbArticle) {
+  //         console.log(dbArticle);
+  //       })
+  //       .catch(function(err) {
+  //         // TODO: return status page
+  //         return res.json(err);
+  //       });
+  //   });
+
+//     // TODO: send all articles instead?
+//     res.send("Scrape Complete");
+//   });
+// });
+
 app.get("/scraped", function(req, res) {
   console.log('Starting to scrape')
   request("http://www.heraldsun.com/news/local/community/chapel-hill-news/", function(error, response, html) {
@@ -58,34 +74,72 @@ app.get("/scraped", function(req, res) {
         // removes leading and trailing line breaks
         summary = summary.replace(/^\s+|\s+$/g, '');
       }
-      // console.log({link});
-      // console.log({title})
-      // console.log({summary});
-      // console.log();
-      // TODO: improve this from school solution
+
       if (link !== undefined) {
-        // test to see if article has already been stored
-        // TODO: change to mongoose
-        db.articles.findOne({link: link}, function(err, doc) {
-          if (doc.length === 0) {
-            db.articles.insert ({
-              "title": title,
-              "link": link,
-              "summary": summary
-            });
-          } else {
-            console.log('article already in DB');
-          }
-        }) // end of query processing
+        var result = {};
+        result.title = title;
+        result.link = link;
+        result.summary = summary;
+        
+        db.Article.create(result)
+          .then(function(dbArticle) {
+            console.log(dbArticle);
+          })
+          .catch(function(err) {
+            // TODO: return status page, not error
+           return res.json(err);
+        });
       }
     }); // end of .each
-
     res.send("Site scraped");
   });
 }); // end of scraping
 
 
-// Listen on port 3000
-app.listen(3000, function() {
-  console.log("App running on port 3000!");
+// Route for getting all articles from db
+app.get("/articles", function(req, res) {
+  db.Article.find({})
+    .then(function(dbArticle) {
+      res.json(dbArticle);
+    })
+    .catch(function(err) {
+      // TODO: send status page instead
+      res.json(err);
+    });
+});
+
+// TODO: update to support an array of notes (if necessary!)
+// Route for populating article with a note
+app.get("/articles/:id", function(req, res) {
+  db.Article.findOne({ _id: req.params.id })
+    .populate("note")
+    .then(function(dbArticle) {
+      res.json(dbArticle);
+    })
+    .catch(function(err) {
+      // TODO: send status page instead
+      res.json(err);
+    });
+});
+
+// TODO: update to support an array of notes
+// Route for saving/updating an Article's associated Note
+app.post("/articles/:id", function(req, res) {
+  // Create a new note and pass the req.body to the entry
+  db.Note.create(req.body)
+    .then(function(dbNote) {
+      return db.Article.findOneAndUpdate({ _id: req.params.id }, { note: dbNote._id }, { new: true });
+    })
+    .then(function(dbArticle) {
+      res.json(dbArticle);
+    })
+    .catch(function(err) {
+      // TODO: send status page instead
+      res.json(err);
+    });
+});
+
+// Start the server
+app.listen(PORT, function() {
+  console.log("App running on port " + PORT + "!");
 });
