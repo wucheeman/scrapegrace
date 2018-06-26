@@ -1,4 +1,5 @@
 var db = require("../models");
+// TODO: move from request to axios
 var request = require("request");
 var cheerio = require("cheerio");
 
