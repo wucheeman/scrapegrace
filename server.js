@@ -2,6 +2,7 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var logger = require("morgan");
 var mongoose = require("mongoose");
+const exphbs = require("express-handlebars");
 
 // TODO: update to enable running on Heroku
 var PORT = 3000;
@@ -12,6 +13,13 @@ var app = express();
 // Configure middleware
 app.use(logger("dev"));
 app.use(bodyParser.urlencoded({ extended: true }));
+
+// parse application/json
+app.use(bodyParser.json());
+
+// Set Handlebars.
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
 
 require("./controllers/routes.js")(app);
 app.use(express.static("public"));
