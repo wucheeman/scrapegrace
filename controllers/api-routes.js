@@ -52,8 +52,7 @@ module.exports = function(app) {
         res.json(dbArticle);
       })
       .catch(function(err) {
-        // TODO: send status page instead
-        res.json(err);
+        res.json(500).send('Server failure');
       });
   });
   
@@ -65,8 +64,7 @@ module.exports = function(app) {
         res.json(dbArticle);
       })
       .catch(function(err) {
-        // TODO: send status page instead
-        res.json(err);
+        res.status(500).send('Server failure');
       });
   });
   
@@ -81,8 +79,7 @@ module.exports = function(app) {
         res.json(dbArticle);
       })
       .catch(function(err) {
-        // TODO: send status page instead
-        res.json(err);
+        res.status(500).send('Server failure');
       });
   });
 
