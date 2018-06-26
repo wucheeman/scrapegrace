@@ -22,41 +22,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static("public"));
 
-// TODO: update to correct DB
 mongoose.connect("mongodb://localhost/scrapegracedb");
 
 // Routes
-// TODO: update for correct web site
-// TODO: add summary
-// Route for scraping the news website
-// app.get("/scrape", function(req, res) {
-  // axios.get("http://www.echojs.com/").then(function(response) {
-  //   var $ = cheerio.load(response.data);
-
-  //   $("article h2").each(function(i, element) {
-  //     var result = {};
-
-  //     result.title = $(this)
-  //       .children("a")
-  //       .text();
-  //     result.link = $(this)
-  //       .children("a")
-  //       .attr("href");
-
-  //     db.Article.create(result)
-  //       .then(function(dbArticle) {
-  //         console.log(dbArticle);
-  //       })
-  //       .catch(function(err) {
-  //         // TODO: return status page
-  //         return res.json(err);
-  //       });
-  //   });
-
-//     // TODO: send all articles instead?
-//     res.send("Scrape Complete");
-//   });
-// });
 
 app.get("/scraped", function(req, res) {
   console.log('Starting to scrape')
@@ -108,7 +76,6 @@ app.get("/articles", function(req, res) {
     });
 });
 
-// TODO: update to support an array of notes (if necessary!)
 // Route for populating article with a note
 app.get("/articles/:id", function(req, res) {
   db.Article.findOne({ _id: req.params.id })
@@ -122,7 +89,6 @@ app.get("/articles/:id", function(req, res) {
     });
 });
 
-// TODO: update to support an array of notes
 // Route for saving/updating an Article's associated Note
 app.post("/articles/:id", function(req, res) {
   // Create a new note and pass the req.body to the entry
