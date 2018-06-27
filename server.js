@@ -25,7 +25,7 @@ app.set("view engine", "handlebars");
 require("./controllers/routes.js")(app);
 
 // TODO: I dont' think I want this with handlebars in picture
-//app.use(express.static("public"));
+app.use(express.static("public"));
 
 mongoose.connect("mongodb://localhost/scrapegracedb");
 

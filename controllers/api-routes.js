@@ -47,19 +47,7 @@ module.exports = function(app) {
       res.send("Site scraped");
     });
   }); // end of scraping
-  
-  
-  // Route for getting all articles from db - initial
-  // app.get("/articles", function(req, res) {
-  //   db.Article.find({})
-  //     .then(function(dbArticle) {
-  //       res.json(dbArticle);
-  //     })
-  //     .catch(function(err) {
-  //       res.json(500).send('Server failure');
-  //     });
-  // });
-  
+    
   // Route for getting articles and sending to handlebars
   app.get("/articles", function(req, res) {
     db.Article.find({})
@@ -73,6 +61,7 @@ module.exports = function(app) {
 
   // Route for populating article with a note
   app.get("/articles/:id", function(req, res) {
+    console.log(`got request for ${req.params.id}`);
     db.Article.findOne({ _id: req.params.id })
       .populate("note")
       .then(function(dbArticle) {
