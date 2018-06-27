@@ -21,8 +21,11 @@ app.use(bodyParser.json());
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
+// TODO: uncomment when experiment is done
 require("./controllers/routes.js")(app);
-app.use(express.static("public"));
+
+// TODO: I dont' think I want this with handlebars in picture
+//app.use(express.static("public"));
 
 mongoose.connect("mongodb://localhost/scrapegracedb");
 

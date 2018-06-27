@@ -7,6 +7,10 @@ var cheerio = require("cheerio");
 // =============================================================
 module.exports = function(app) {
 
+  app.get('/', function (req, res) {
+    res.render('home');
+  });
+
   app.get("/scraped", function(req, res) {
     console.log('Starting to scrape')
     request("http://www.heraldsun.com/news/local/community/chapel-hill-news/", function(error, response, html) {
@@ -45,17 +49,28 @@ module.exports = function(app) {
   }); // end of scraping
   
   
-  // Route for getting all articles from db
+  // Route for getting all articles from db - initial
+  // app.get("/articles", function(req, res) {
+  //   db.Article.find({})
+  //     .then(function(dbArticle) {
+  //       res.json(dbArticle);
+  //     })
+  //     .catch(function(err) {
+  //       res.json(500).send('Server failure');
+  //     });
+  // });
+  
+  // Route for getting articles and sending to handlebars
   app.get("/articles", function(req, res) {
     db.Article.find({})
       .then(function(dbArticle) {
-        res.json(dbArticle);
+        res.render("home", {articles: dbArticle});
       })
       .catch(function(err) {
         res.json(500).send('Server failure');
       });
   });
-  
+
   // Route for populating article with a note
   app.get("/articles/:id", function(req, res) {
     db.Article.findOne({ _id: req.params.id })

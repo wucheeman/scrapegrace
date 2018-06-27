@@ -1,0 +1,40 @@
+<div class="container"></div>
+
+<div class="row">
+  <div class="col-sm-12 text-left pl-10">
+    <h1>Scrapegrace!</h1>
+    <h4>A Rascal of a News Site for Chapel Hill, NC</h4>
+    <br>
+    {{# each articles }}
+      <div class="caption">
+        <h5>{{ this.title }}</h5>
+        <p>{{ this.summary }}</p>
+        <a href='{{ this.link }}' class="btn btn-success btn-sm" target="_blank">Read</a>
+        {{!-- TODO: make this work / clean out unneeded stuff--}}
+        {{!-- <button class="comment btn btn-info btn-sm" data-id="{{id}}" data-devoured="{{devoured}}">Comment</button> --}}
+        <button type="button" class="comment btn btn-info btn-sm" data-toggle="modal" data-target="#myModal">Comment</button>
+        {{!-- TODO: improve this kludge --}}
+        <br>
+        <br>
+        <br>
+      </div>
+    {{/each}}
+    <div id="myModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Modal Header</h4>
+          </div>
+          <div class="modal-body">
+            <p>Some text in the modal.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div> <!-- end of modal -->
+  </div>
+</div> // end of row
