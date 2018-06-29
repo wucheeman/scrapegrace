@@ -51,7 +51,9 @@ module.exports = function(app) {
   // Route for getting articles and sending to handlebars
   app.get("/articles", function(req, res) {
     db.Article.find({})
+      .populate("note")
       .then(function(dbArticle) {
+        console.log(dbArticle);
         res.render("home", {articles: dbArticle});
       })
       .catch(function(err) {
@@ -65,7 +67,9 @@ module.exports = function(app) {
     db.Article.findOne({ _id: req.params.id })
       .populate("note")
       .then(function(dbArticle) {
-        res.json(dbArticle);
+        console.log(dbArticle);
+        // res.json(dbArticle);
+        res.render("home", {note: dbArticle});
       })
       .catch(function(err) {
         res.status(500).send('Server failure');
