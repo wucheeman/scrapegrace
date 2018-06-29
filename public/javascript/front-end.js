@@ -4,7 +4,8 @@ $(function() {
   $(".create-form").on("submit", function(event) {
     event.preventDefault();
     
-    var id = $("#articleId").val();
+    var id = $(".articleId").val();
+    // var id = $(this).data("id");
 
     console.log(id);
 
@@ -23,29 +24,28 @@ $(function() {
       function() {
         console.log("created new note");
         // Reload the page to get the updated list
-        location.reload();
+        //location.reload();
       }
     );
   });
 
+  // TODO: no longer needed
   // get note associated with article
-  $(".comment").on("click", function(event) {
-    event.preventDefault();
-    var id = $(this).data("id");
-    console.log(id);
+  // $(".comment").on("click", function(event) {
+  //   event.preventDefault();
+  //   var id = $(this).data("id");
+  //   console.log(id);
 
-    $.ajax("/articles/" + id, {
-      type: "GET"
-    }).then( 
-      function(data){
-        console.log(data);
-    });
-  });
+  //   $.ajax("/articles/" + id, {
+  //     type: "GET"
+  //   }).then( 
+  //     function(data){
+  //       console.log(data);
+  //   });
+  // });
 
 
 // need a delete comment handler
-
-// need a see-saved-articles handler
 
 // need a scrape new articles handler
 
