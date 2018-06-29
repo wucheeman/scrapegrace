@@ -53,7 +53,7 @@ module.exports = function(app) {
     db.Article.find({})
       .populate("note")
       .then(function(dbArticle) {
-        console.log(dbArticle);
+        // console.log(dbArticle);
         res.render("home", {articles: dbArticle});
       })
       .catch(function(err) {
