@@ -91,5 +91,19 @@ module.exports = function(app) {
       });
   });
 
+  // Route for deleting note from article
+  app.get("/notes/delete/:id", function(req, res) {
+    console.log(`got request to delete ${req.params.id}`);
+    db.Note.findOneAndRemove({ _id: req.params.id })
+      .then(function(dbNote) {
+        console.log(dbNote);
+        // res.json(dbArticle);
+        res.status(200).send('note deleted');
+      })
+      .catch(function(err) {
+        res.status(500).send('Server failure');
+      });
+  });
+
 }
 

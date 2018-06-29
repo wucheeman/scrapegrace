@@ -12,12 +12,12 @@
         <p>articles/{{ this._id }}</p>
         <p>Comment id:{{this.note}}</p>
         <p>Comments:{{this.note.body}}</p>
-        <a href='{{ this.link }}' class="btn btn-success btn-sm" target="_blank">Read</a>
-        {{!-- TODO: make this work / clean out unneeded stuff--}}
-        {{!-- <button class="comment btn btn-info btn-sm" data-id="{{id}}" data-devoured="{{devoured}}">Comment</button> --}}
+        <a href='{{ this.link }}' class="btn btn-success btn-sm" target="_blank">Read Article</a>
+        {{!-- TODO: make this work --}}
+        <a href='#' class="delete btn btn-danger btn-sm" >Delete Note</a>
         <h6>Add A Comment</h3>
         <form class="create-form">
-          {{!-- todo remove title --}}
+          {{!-- todo remove title after model is updated --}}
           <div class="form-group">
             <label for="nt">Title:</label>
             <input type="text" id="nt" name="title">
