@@ -1,0 +1,40 @@
+<div class="container"></div>
+
+<div class="row">
+  <div class="col-sm-12 text-left pl-10">
+    <h1>Scrapegrace!</h1>
+    <h4>A Rascal of a News Site for Chapel Hill, NC</h4>
+    <br>
+    {{# each articles }}
+      <div class="caption">
+        <h5>{{ this.title }}</h5>
+        <p>{{ this.summary }}</p>
+        <p>articles/{{ this._id }}</p>
+        <p>Comment id:{{this.note}}</p>
+        <p>Comments:{{this.note.body}}</p>
+        <a href='{{ this.link }}' class="btn btn-success btn-sm" target="_blank">Read Article</a>
+        {{!-- TODO: make this work --}}
+        <a href='#' class="delete btn btn-danger btn-sm" >Delete Note</a>
+        <h6>Add A Comment</h3>
+        <form class="create-form">
+          {{!-- todo remove title after model is updated --}}
+          <div class="form-group">
+            <label for="nt">Title:</label>
+            <input type="text" id="nt" name="title">
+          </div>
+          <div class="form-group">
+            <input type="text" id="nb" name="body">
+          </div>
+            <input type="hidden" class="articleId" name="articleId" value="{{this._id}}">
+          <button type="submit" class="btn btn-success">{{this._id}}</button>
+          {{!-- Problem description
+          This button knows the correct article ID. However, when clicked, the front end only receives the article ID for the first article, regardless of the article that I click on. If I enter
+          a note for the first article, the front end gets it correctly. For any other article, the front end gets no input for title and body. I suspect that's because of the ID problem,
+          but it might be separate. --}}
+        </form>
+        <br>
+        <br>
+        <br>
+      </div>
+    {{/each}}
+  </div>

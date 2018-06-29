@@ -1,5 +1,5 @@
 
-body { background-color: #F2F6D0 }
+/* body { background-color: #F2F6D0 }
 #wrapper {
   width: 960px;
   margin-left: auto;
@@ -28,4 +28,14 @@ input {
 textarea {
   height: 200px;
   font-size: 18px;
+} */
+
+.background {
+  background-image: url("./../images/paperboy_final.png");
+
+  height: 10%; 
+
+  background-position: center;
+  background-repeat: no-repeat;
+  /* background-size: cover; */
 }

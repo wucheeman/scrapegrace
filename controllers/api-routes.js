@@ -7,6 +7,10 @@ var cheerio = require("cheerio");
 // =============================================================
 module.exports = function(app) {
 
+  app.get('/', function (req, res) {
+    res.render('home');
+  });
+
   app.get("/scraped", function(req, res) {
     console.log('Starting to scrape')
     request("http://www.heraldsun.com/news/local/community/chapel-hill-news/", function(error, response, html) {
@@ -43,25 +47,29 @@ module.exports = function(app) {
       res.send("Site scraped");
     });
   }); // end of scraping
-  
-  
-  // Route for getting all articles from db
+    
+  // Route for getting articles and sending to handlebars
   app.get("/articles", function(req, res) {
     db.Article.find({})
+      .populate("note")
       .then(function(dbArticle) {
-        res.json(dbArticle);
+        // console.log(dbArticle);
+        res.render("home", {articles: dbArticle});
       })
       .catch(function(err) {
         res.json(500).send('Server failure');
       });
   });
-  
+
   // Route for populating article with a note
   app.get("/articles/:id", function(req, res) {
+    console.log(`got request for ${req.params.id}`);
     db.Article.findOne({ _id: req.params.id })
       .populate("note")
       .then(function(dbArticle) {
-        res.json(dbArticle);
+        console.log(dbArticle);
+        // res.json(dbArticle);
+        res.render("home", {note: dbArticle});
       })
       .catch(function(err) {
         res.status(500).send('Server failure');
@@ -77,6 +85,20 @@ module.exports = function(app) {
       })
       .then(function(dbArticle) {
         res.json(dbArticle);
+      })
+      .catch(function(err) {
+        res.status(500).send('Server failure');
+      });
+  });
+
+  // Route for deleting note from article
+  app.get("/notes/delete/:id", function(req, res) {
+    console.log(`got request to delete ${req.params.id}`);
+    db.Note.findOneAndRemove({ _id: req.params.id })
+      .then(function(dbNote) {
+        console.log(dbNote);
+        // res.json(dbArticle);
+        res.status(200).send('note deleted');
       })
       .catch(function(err) {
         res.status(500).send('Server failure');
