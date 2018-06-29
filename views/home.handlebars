@@ -14,7 +14,10 @@
         <p>Comments:{{this.note.body}}</p>
         <a href='{{ this.link }}' class="btn btn-success btn-sm" target="_blank">Read Article</a>
         {{!-- TODO: make this work --}}
-        <a href='#' class="delete btn btn-danger btn-sm" >Delete Note</a>
+        <form class='delete-group'>
+          <input type="hidden" class="noteId" value="{{this.note._id}}">
+          <button type="submit" class="btn btn-danger btn-sm">Delete Note</button>
+        </form>
         <h6>Add A Comment</h3>
         <form class="create-form">
           {{!-- todo remove title after model is updated --}}

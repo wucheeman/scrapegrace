@@ -46,9 +46,11 @@ $(function() {
 
 
 // delete comment handler
-$(".delete").on("click", function(event) {
+$(".delete-group").on("click", function(event) {
   event.preventDefault();
-  var id = $(this).data("id");
+
+  var id = $(".noteId").val();
+  // var id = $(this).data("id");
   console.log(id);
 
   $.ajax("/notes/delete/" + id, {
@@ -56,6 +58,7 @@ $(".delete").on("click", function(event) {
   }).then( 
     function(data){
       console.log(data);
+      location.reload();
   });
 });
 
