@@ -53,7 +53,6 @@ module.exports = function(app) {
     db.Article.find({})
       .populate("note")
       .then(function(dbArticle) {
-        // console.log(dbArticle);
         res.render("home", {articles: dbArticle});
       })
       .catch(function(err) {
@@ -68,7 +67,6 @@ module.exports = function(app) {
       .populate("note")
       .then(function(dbArticle) {
         console.log(dbArticle);
-        // res.json(dbArticle);
         res.render("home", {note: dbArticle});
       })
       .catch(function(err) {
@@ -97,7 +95,6 @@ module.exports = function(app) {
     db.Note.findOneAndRemove({ _id: req.params.id })
       .then(function(dbNote) {
         console.log(dbNote);
-        // res.json(dbArticle);
         res.status(200).send('note deleted');
       })
       .catch(function(err) {

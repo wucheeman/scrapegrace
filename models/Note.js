@@ -3,8 +3,6 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var NoteSchema = new Schema({
-  // TODO: remove this; title is not required
-  // title: String,
   body: String
 });
 
