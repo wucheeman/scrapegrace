@@ -24,24 +24,31 @@ $("#scrapeAndShow").on("click", function(event) {
     event.preventDefault();
     
     var id = $(this).find(".articleId").val();
+    var noteBody = $(this).find("#nb").val().trim();
 
-    var newNote = {
-      body: $(this).find("#nb").val().trim(),
-    };
+    $(this).find("#nb").val('')
 
-    console.log(newNote);
+    if (noteBody !== '') {
 
-    // Send the POST request.
-    $.ajax("/articles/" + id, {
-      type: "POST",
-      data: newNote
-    }).then(
-      function() {
-        console.log("created new note");
-        // Reload the page to get the updated list
-        location.reload();
-      }
-    );
+      var newNote = {
+        body: noteBody,
+      };
+  
+      console.log(newNote);
+  
+      // Send the POST request.
+      $.ajax("/articles/" + id, {
+        type: "POST",
+        data: newNote
+      }).then(
+        function() {
+          console.log("created new note");
+          // Reload the page to get the updated list
+          location.reload();
+        }
+      );
+    }
+
   });
 
   // // TODO: remove when no longer needed
