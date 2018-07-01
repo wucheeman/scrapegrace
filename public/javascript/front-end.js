@@ -1,5 +1,24 @@
 $(function() {
 
+// scrape news and display it
+$("#scrapeAndShow").on("click", function(event) {
+  event.preventDefault();
+  
+  $.ajax("/scraped", {
+    type: "GET"
+  }).then(
+    function() {
+      $.ajax("/articles", {
+        type: "GET"
+      }).then(
+        function(data){
+          console.log(data);
+          window.location.replace("/articles");
+          //location.reload();
+      });
+    });
+  });
+
   // create note
   $(".create-form").on("submit", function(event) {
     event.preventDefault();
