@@ -1,0 +1,45 @@
+TEST RUN 1 (LOCAL) FOR SCRAPEGRACE
+
+d = deferred
+e = met by enhancement
+f = failed
+p = passed
+s = skipped
+w = waiting for further work
+
+Assignment
+==========
+Static requirements
+-------------------
+[Package] Uses required packages
+   () express
+   () express-handlebars
+   () mongoose
+   () body-parser
+   () cheerio 
+   () request or axios
+[p] Connects locally to Mongo DB
+[w] Deploy to Heroku
+[] On Heroku, connects via mLab
+
+Functional requirements
+---------------------
+[p] app should scrape stories from a news outlet of your choice
+[p] app displays news stored for the user.
+[p] Each scraped article is saved to MongoDB
+[p] App does not store duplicates of articles
+[p] App does not clear out database when a user leaves and repopulate it fresh with each visit
+[p] app scrapes and displays the following for each article:
+   () Headline - the title of the article
+   () Summary - a short summary of the article
+   () URL - the url to the original article
+[p] User can leave comments on an article
+[p] Comments are saved to the database as well, and are associated with their articles. 
+[p] All stored comments are visible to every user.
+[p] Users can delete comments left on articles. 
+	
+Installation
+============
+[p] Package installs correctly in a new directory
+[p] All dependencies are listed in package.json
+

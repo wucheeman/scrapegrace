@@ -4,20 +4,9 @@ $(function() {
   $(".create-form").on("submit", function(event) {
     event.preventDefault();
     
-    // var id = $(".articleId").val();
-    // // var id = $(this).data("id");
-
-    // console.log(id);
-
-    // var newNote = {
-    //   title: $("#nt").val().trim(),
-    //   body: $("#nb").val().trim(),
-    // };
-
     var id = $(this).find(".articleId").val();
 
     var newNote = {
-      //title: $(this).find("#nt").val().trim(),
       body: $(this).find("#nb").val().trim(),
     };
 
@@ -36,28 +25,26 @@ $(function() {
     );
   });
 
-  // TODO: no longer needed
-  // get note associated with article
-  $(".comment").on("click", function(event) {
-    event.preventDefault();
-    var id = $(this).data("id");
-    console.log(id);
+  // // TODO: remove when no longer needed
+  // // get note associated with article
+  // $(".comment").on("click", function(event) {
+  //   event.preventDefault();
+  //   var id = $(this).data("id");
+  //   console.log(id);
 
-    $.ajax("/articles/" + id, {
-      type: "GET"
-    }).then( 
-      function(data){
-        console.log(data);
-    });
-  });
+  //   $.ajax("/articles/" + id, {
+  //     type: "GET"
+  //   }).then( 
+  //     function(data){
+  //       console.log(data);
+  //   });
+  // });
 
 
 // delete comment handler
 $(".delete-group").on("click", function(event) {
   event.preventDefault();
 
-  // var id = $(".noteId").val();
-  // var id = $(this).data("id");
   var id = $(this).find(".noteId").val();
   console.log(id);
 
