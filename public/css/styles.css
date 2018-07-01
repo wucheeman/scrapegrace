@@ -1,50 +1,14 @@
 
 body { 
-  /* background-color: #F2F6D0 */
   padding: 20px;
 }
 .headline {
-  background-color: #7BAFD4
+  background-color: #4B9CD3
 }
-/* #wrapper {
-  width: 960px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-top: 5%;
-} */
-/* #articles {
-  display: inline-block;
-  overflow: auto;
-  width: 60%;
-  height: 700px;
-}
-#notes {
-  float: right;
-  width: 30%;
-} */
 textarea, input {
   display: block;
   width: 100%;
-  /* background-color: #FCF5C7; */
 }
-/* input {
-  /* height: 48px; */
-  /* font-size: 24px; */
-/* } */ 
-/* textarea {
-  height: 200px;
-  font-size: 18px;
-} */
 .read {
   margin-top: 30%
 }
-/* TODO: delete */
-/* .background {
-  background-image: url("./../images/paperboy_final.png");
-
-  height: 10%; 
-
-  background-position: center;
-  background-repeat: no-repeat;
-  /* background-size: cover; */
-} */
