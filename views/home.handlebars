@@ -17,27 +17,13 @@
           <button type="submit" class="btn btn-danger btn-sm">Delete Note</button>
         </form>
         <h6>Add A Comment</h3>
-        {{!-- <form class="create-form">
+        <form class="create-form">
           <div class="form-group">
-            <label for="nt">Title:</label>
-            <input type="text" id="nt" name="title">
-            <label for="nt">body:</label>
+            {{!-- <input value={{this.note.body}} type="text" id="nb" name="body"> --}}
             <input type="text" id="nb" name="body">
           </div>
             <input type="hidden" class="articleId" name="articleId" value="{{this._id}}">
-          <button type="submit" class="btn btn-success">{{this._id}}</button>
-        </form> --}}
-        <form class="create-form">
-          {{!-- todo remove title after model is updated --}}
-          {{!-- <div class="form-group">
-            <label for="nt">Title:</label>
-            <input value={{this.note.title}} type="text" id="nt" name="title">
-          </div> --}}
-          <div class="form-group">
-            <input value={{this.note.body}} type="text" id="nb" name="body">
-          </div>
-            <input type="hidden" class="articleId" name="articleId" value="{{this._id}}">
-          <button class="noteSubmit" data-id={{this.id}} type="submit" class="btn btn-success">{{this._id}}</button>
+          <button data-id={{this.id}} type="submit" class="btn btn-info btn-sm">Add Comment</button>
           </form>
         <br>
         <br>
