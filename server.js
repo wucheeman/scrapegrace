@@ -5,7 +5,7 @@ var mongoose = require("mongoose");
 const exphbs = require("express-handlebars");
 
 // TODO: update to enable running on Heroku
-var PORT = 3000;
+var PORT = process.env.PORT || 3000;
 
 // Initialize Express
 var app = express();
@@ -25,7 +25,11 @@ require("./controllers/routes.js")(app);
 
 app.use(express.static("public"));
 
-mongoose.connect("mongodb://localhost/scrapegracedb");
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/scrapegracedb";
+
+// Connect to the Mongo DB
+mongoose.Promise = Promise;
+mongoose.connect(MONGODB_URI);
 
 // Start the server
 app.listen(PORT, function() {
