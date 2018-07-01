@@ -3,6 +3,9 @@ body {
   /* background-color: #F2F6D0 */
   padding: 20px;
 }
+.headline {
+  background-color: #7BAFD4
+}
 /* #wrapper {
   width: 960px;
   margin-left: auto;
