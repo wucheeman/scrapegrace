@@ -1,49 +1,60 @@
-<div class="container"></div>
-
-<div class="row">
-  <div class="col-sm-12 text-left pl-10">
-    <h1>Scrapegrace!</h1>
+<div class="container">
+<div class="row headline pt-4">
+    <div class='col-sm-2'>
+    <img class="pb-4 pl-4" src="/images/paper_boy_button.png" alt="Paperboy">
+  </div>
+  <div class="col-sm-8 text-center">
+    <h1>Scrapegrace News!</h1>
     <h4>A Rascal of a News Site for Chapel Hill, NC</h4>
-    <br>
-    {{# each articles }}
-      <div class="caption">
+        {{!-- <br> --}}
+  </div> <!-- end of col -->
+  <div class='col-sm-2 pl-0 pr-4'>
+    <a href='/articles' class="btn btn-success btn-block btn-sm read" >Get News</a>
+    {{!-- input type="image" src="logg.png" name="saveForm" class="btTxt submit" id="saveForm" /> --}}
+  </div>
+    {{!-- <a class="nav-link" href="">Get Articles <span class="sr-only">(current)</span></a> --}}
+    {{!-- <br> --}}
+</div> <!--end of row -->
+        <br>
+{{# each articles }}
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-10">
         <h5>{{ this.title }}</h5>
         <p>{{ this.summary }}</p>
-        <p>articles/{{ this._id }}</p>
-        <p>Comment id:{{this.note}}</p>
-        <p>Comments:{{this.note.body}}</p>
-        <a href='{{ this.link }}' class="btn btn-success btn-sm" target="_blank">Read Article</a>
-        {{!-- TODO: make this work --}}
+      </div> <!-- end of col -->
+      <div class="col-sm-2">
+        <a href='{{ this.link }}' class="btn btn-success btn-block btn-sm read" target="_blank" >Read Article</a>
+      </div> <!-- end of col -->
+    </div> <!-- end of row -->
+    <div class='row'>
+      <div class="col-sm-10">
+        <p><strong>Comment:</strong>  {{this.note.body}}</p>
+      </div> <!-- end of col -->
+      <div class="col-sm-2">
         <form class='delete-group'>
           <input type="hidden" class="noteId" value="{{this.note._id}}">
-          <button type="submit" class="btn btn-danger btn-sm">Delete Note</button>
+          <button type="submit" class="btn btn-danger btn-block btn-sm">Delete Note</button>
         </form>
-        <h6>Add A Comment</h3>
-        {{!-- <form class="create-form">
-          <div class="form-group">
-            <label for="nt">Title:</label>
-            <input type="text" id="nt" name="title">
-            <label for="nt">body:</label>
-            <input type="text" id="nb" name="body">
+      </div> <!-- end of col -->
+    </div> <!-- end row -->
+      <div class='row'>
+        <div class="col-sm-10">
+      {{!-- <p><strong>Make Comment</strong></p> --}}
+      <form class="create-form">
+        <div class="form-group">
+          {{!-- <input value={{this.note.body}} type="text" id="nb" name="body"> --}}
+          <input type="text" id="nb" name="body" placeholder="Your Comment">
+        </div>
+          <input type="hidden" class="articleId" name="articleId" value="{{this._id}}">
           </div>
-            <input type="hidden" class="articleId" name="articleId" value="{{this._id}}">
-          <button type="submit" class="btn btn-success">{{this._id}}</button>
-        </form> --}}
-        <form class="create-form">
-          {{!-- todo remove title after model is updated --}}
-          {{!-- <div class="form-group">
-            <label for="nt">Title:</label>
-            <input value={{this.note.title}} type="text" id="nt" name="title">
-          </div> --}}
-          <div class="form-group">
-            <input value={{this.note.body}} type="text" id="nb" name="body">
-          </div>
-            <input type="hidden" class="articleId" name="articleId" value="{{this._id}}">
-          <button class="noteSubmit" data-id={{this.id}} type="submit" class="btn btn-success">{{this._id}}</button>
-          </form>
-        <br>
-        <br>
-        <br>
-      </div>
-    {{/each}}
-  </div>
+          <div class="col-sm-2">
+        <button data-id={{this.id}} type="submit" class="btn btn-info btn-block btn-sm">Add Comment</button>
+        </div>
+        </form>
+        </div> <!-- end or row -->
+      <br>
+    {{!-- </div> --}}
+  </div>  <!-- end of inner container -->
+{{/each}}
+</div> <!-- end of outer container -->
