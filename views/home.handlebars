@@ -6,14 +6,11 @@
   <div class="col-sm-8 text-center">
     <h1>Scrapegrace News!</h1>
     <h4>A Rascal of a News Site for Chapel Hill, NC</h4>
-        {{!-- <br> --}}
   </div> <!-- end of col -->
   <div class='col-sm-2 pl-0 pr-4'>
     <a href='/articles' class="btn btn-success btn-block btn-sm read" >Get News</a>
-    {{!-- input type="image" src="logg.png" name="saveForm" class="btTxt submit" id="saveForm" /> --}}
   </div>
-    {{!-- <a class="nav-link" href="">Get Articles <span class="sr-only">(current)</span></a> --}}
-    {{!-- <br> --}}
+
 </div> <!--end of row -->
         <br>
 {{# each articles }}
@@ -40,10 +37,8 @@
     </div> <!-- end row -->
       <div class='row'>
         <div class="col-sm-10">
-      {{!-- <p><strong>Make Comment</strong></p> --}}
       <form class="create-form">
         <div class="form-group">
-          {{!-- <input value={{this.note.body}} type="text" id="nb" name="body"> --}}
           <input type="text" id="nb" name="body" placeholder="Your Comment">
         </div>
           <input type="hidden" class="articleId" name="articleId" value="{{this._id}}">
