@@ -17,7 +17,7 @@ $(function() {
     var id = $(this).find(".articleId").val();
 
     var newNote = {
-      title: $(this).find("#nt").val().trim(),
+      //title: $(this).find("#nt").val().trim(),
       body: $(this).find("#nb").val().trim(),
     };
 
