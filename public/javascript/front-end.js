@@ -4,14 +4,21 @@ $(function() {
   $(".create-form").on("submit", function(event) {
     event.preventDefault();
     
-    var id = $(".articleId").val();
-    // var id = $(this).data("id");
+    // var id = $(".articleId").val();
+    // // var id = $(this).data("id");
 
-    console.log(id);
+    // console.log(id);
+
+    // var newNote = {
+    //   title: $("#nt").val().trim(),
+    //   body: $("#nb").val().trim(),
+    // };
+
+    var id = $(this).find(".articleId").val();
 
     var newNote = {
-      title: $("#nt").val().trim(),
-      body: $("#nb").val().trim(),
+      title: $(this).find("#nt").val().trim(),
+      body: $(this).find("#nb").val().trim(),
     };
 
     console.log(newNote);
@@ -49,8 +56,9 @@ $(function() {
 $(".delete-group").on("click", function(event) {
   event.preventDefault();
 
-  var id = $(".noteId").val();
+  // var id = $(".noteId").val();
   // var id = $(this).data("id");
+  var id = $(this).find(".noteId").val();
   console.log(id);
 
   $.ajax("/notes/delete/" + id, {
