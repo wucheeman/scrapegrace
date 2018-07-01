@@ -9,9 +9,7 @@
       <div class="caption">
         <h5>{{ this.title }}</h5>
         <p>{{ this.summary }}</p>
-        <p>articles/{{ this._id }}</p>
-        <p>Comment id:{{this.note}}</p>
-        <p>Comments:{{this.note.body}}</p>
+        <p><strong>Comment:</strong>  {{this.note.body}}</p>
         <a href='{{ this.link }}' class="btn btn-success btn-sm" target="_blank">Read Article</a>
         {{!-- TODO: make this work --}}
         <form class='delete-group'>
