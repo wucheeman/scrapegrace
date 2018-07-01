@@ -27,12 +27,14 @@ textarea, input {
 /* input {
   /* height: 48px; */
   /* font-size: 24px; */
-} */
+/* } */ 
 /* textarea {
   height: 200px;
   font-size: 18px;
 } */
-
+.read {
+  margin-top: 30%
+}
 /* TODO: delete */
 /* .background {
   background-image: url("./../images/paperboy_final.png");
