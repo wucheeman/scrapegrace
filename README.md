@@ -1,4 +1,4 @@
-(banner.png)
+![Scrapegrace Banner](banner.png)
 
 ## What the project does
 This is an implementation of the Mongo Scraper, done as homework for the February 2018 UNC Coding Boot Camp. Scrapegrace News scrapes the pages of the Durham Herald-Sun for news of Chapel Hill, North Carolina.
