@@ -1,9 +1,9 @@
 ![Scrapegrace Banner](banner.png)
 
 ## What the project does
-This is an implementation of the Mongo Scraper, done as homework for the February 2018 UNC Coding Boot Camp. Scrapegrace News scrapes the pages of the Durham Herald-Sun for news of Chapel Hill, North Carolina.
+This is an implementation of the Mongo Scraper, done as homework for the February 2018 UNC Coding Boot Camp. Scrapegrace News scrapes the pages of the Durham Herald-Sun for news of Chapel Hill, North Carolina. On the backend, it uses Node.js, MongoDB and Mongoose, and Express. On the frontend, it uses Handlebars and a bit of JQuery.
 
-## How to get started with the game
+## How to get started with the application
 The app is available on Heroku at [https://multicultural-poutine-95784.herokuapp.com/] As long as you have the dependencies listed in package.json, you can also download the app and run it locally.
 
 Let's assume that you are going to look at the application on Heroku. Once you click the link, your browser will open in the Heroku app. It may be slow at first, as Heroku has to start up a new virtual machine to host the application.
